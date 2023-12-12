@@ -1,0 +1,79 @@
+﻿@model IEnumerable<TranHuuTri.Assignment02.eBookStoreWebAPI.ViewModels.User.UserVM>
+@{
+    ViewData["Title"] = "User Page";
+}
+
+<h3>eBookStore/ Users</h3>
+<hr/>
+<p>
+    <a asp-action="Create" class="btn btn-success">Create New</a>
+    <div class="form-actions no-color">
+        <p>
+            <form asp-action="Index" method="post">
+                Find by User Email: <input type="text" name="searchTerm" value="@ViewData["CurrentFilter"]" />
+                <input type="submit" value="Search" class="btn btn-primary" /> |
+                <a asp-action="Index" class="btn btn-primary">Back to Full List</a>
+            </form>
+        </p>
+    </div>
+    @ViewBag.StringJson
+</p>
+<table class="table">
+    <thead>
+        <tr>
+        <tr>
+            <th>Id</th>
+            <th>Email</th>
+            <th>LastName</th>
+            <th>FirstName</th>
+            <th>PubId</th>
+            <th>RoleId</th>
+            <th>Status</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null)
+        {
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Email)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LastName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FirstName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PubId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.RoleId)
+                    </td>
+                    <td>
+                        @if (item.Status == 0)
+                        {
+                            <span class="text-danger">InActive</span>
+                        }
+                        else if (item.Status == 1)
+                        {
+                            <span class="text-success">Active</span>
+                        }
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new {id=item.Id}, new { @class = "btn btn-primary" }) |
+                        @Html.ActionLink("InActive", "DeleteConfirmed", new {id=item.Id}, new { @class = "btn btn-danger" })
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+
+

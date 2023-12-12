@@ -1,0 +1,85 @@
+﻿@model IEnumerable<TranHuuTri.Assignment02.eBookStoreWebAPI.ViewModels.BookAuthor.BookAuthorVM>
+@{
+    ViewData["Title"] = "BookAuthor Page";
+}
+
+<h3>eBookStore/ BookAuthors</h3>
+<hr/>
+<p>
+    @ViewBag.StringJson
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AuthorOrder)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th>
+                AuthorId
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Author.EmailAddress)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Author.LastName)
+            </th>
+            <th>
+                BookId
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Book.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Book.Price)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null)
+        {
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.AuthorOrder)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Status)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Author.Id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Author.EmailAddress)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Author.LastName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Book.Id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Book.Title)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Book.Price)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Get by AuthorId", "GetBookByAuthorId", new {id=item.Id}, new { @class = "btn btn-primary" }) |
+                        @Html.ActionLink("Get by BookId", "GetAuthorByBookId", new {id=item.Id}, new { @class = "btn btn-primary" })
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
