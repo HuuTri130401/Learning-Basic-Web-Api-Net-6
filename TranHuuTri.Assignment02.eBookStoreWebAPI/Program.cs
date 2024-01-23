@@ -60,6 +60,16 @@ builder.Services.AddControllers()
 
 builder.Services.AddAutoMapper(typeof(AutoMapping).Assembly);
 
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen(c =>
+{
+    c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo
+    {
+        Title = "Minimal API",
+        Version = "v1"
+    });
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
